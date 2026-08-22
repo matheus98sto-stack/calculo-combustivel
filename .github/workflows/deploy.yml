@@ -6,8 +6,8 @@ on:
       - main
 
 env:
-  AWS_REGION: sa-east-1 
-  ECR_REPOSITORY: app-combustivel
+  AWS_REGION: us-east-1 
+  ECR_REPOSITORY: projetos/app-combustivel 
 
 jobs:
   build-and-deploy:
