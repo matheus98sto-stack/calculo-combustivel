@@ -53,9 +53,10 @@ jobs:
           script: |
             aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
             
-            docker pull $ECR_REGISTRY/app-combustivel:latest
+            docker pull $ECR_REGISTRY/$ECR_REPOSITORY:latest
             
             docker stop app-combustivel || true
             docker rm app-combustivel || true
             
-            docker run -d --name app-combustivel -p 80:80 $ECR_REGISTRY/app-combustivel:latest
+            docker run -d --name app-combustivel -p 80:80 $ECR_REGISTRY/$ECR_REPOSITORY:latest
+            
