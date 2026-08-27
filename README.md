@@ -6,7 +6,7 @@
 
 ## 🏗️ Arquitetura e Fluxo de CI/CD
 
-O fluxo de implantação é totalmente automatizado. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do *build*, registro da imagem e *deploy* direto no servidor de produção através do arquivo `deploy.yml`[cite: 1].
+O fluxo de implantação é totalmente automatizado. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do *build*, registro da imagem e *deploy* direto no servidor de produção através do arquivo `deploy.yml`.
 
 ```mermaid
 sequenceDiagram
@@ -34,7 +34,7 @@ sequenceDiagram
 - **GitHub Actions:** Automação da pipeline.
 
 **Aplicação Base:**
-- HTML5 (`index.html`), CSS3 (`style.css`) e JavaScript puro, arquitetado de forma modular usando `main.js`, `calculo.js` e `ui.js`[cite: 1].
+- HTML5 (`index.html`), CSS3 (`style.css`) e JavaScript puro, arquitetado de forma modular usando `main.js`, `calculo.js` e `ui.js.
 
 ## 🔐 Configuração do Pipeline (Secrets)
 
