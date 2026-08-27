@@ -1,10 +1,17 @@
 # ⛽ Fuel App - DevOps CI/CD Pipeline
 
-Uma aplicação web conteinerizada, focada em demonstrar práticas modernas de DevOps, incluindo Infraestrutura, Conteinerização (Docker) e Integração/Entrega Contínuas (CI/CD) utilizando AWS e GitHub Actions.
+<p align="center">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS EC2">
+  <img src="https://img.shields.io/badge/AWS_ECR-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS ECR">
+  <img src="https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white" alt="GitHub Actions">
+</p>
 
-## 🏗️ Arquitetura do Projeto
+> Uma aplicação web conteinerizada focada em demonstrar práticas modernas de DevOps. O projeto calcula a melhor opção de abastecimento (Álcool vs Gasolina), mas o verdadeiro destaque é sua **Infraestrutura em Nuvem (AWS)** e o **Pipeline de Integração/Entrega Contínuas (CI/CD)**.
 
-O fluxo de implantação é totalmente automatizado. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do *build*, registro e *deploy* da aplicação na AWS.
+## 🏗️ Arquitetura e Fluxo de CI/CD
+
+O fluxo de implantação é **100% automatizado**. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do processo de linting, build da imagem Docker, registro no repositório de imagens e deploy direto no servidor de produção.
 
 ```mermaid
 sequenceDiagram
@@ -14,10 +21,12 @@ sequenceDiagram
     participant ECR as AWS ECR (Registry)
     participant EC2 as AWS EC2 (Servidor)
 
-    Dev->>Git: Git Push (código novo)
-    Git->>Actions: Dispara a Pipeline de CI/CD
-    Actions->>Actions: Docker Build
-    Actions->>ECR: Docker Push (Envia Imagem)
-    Actions->>EC2: Acesso via SSH
-    EC2->>ECR: Docker Pull (Baixa Imagem)
-    EC2->>EC2: Docker Run (Reinicia a Aplicação na Porta 80)
+    Dev->>Git: Push na branch 'main'
+    Git->>Actions: Dispara a Pipeline CI/CD
+    Actions->>Actions: Checkout & Setup Docker
+    Actions->>Actions: Docker Build (App)
+    Actions->>ECR: Autentica e Executa Docker Push
+    Actions->>EC2: Acesso Remoto via SSH
+    EC2->>ECR: Docker Pull (Baixa a nova imagem)
+    EC2->>EC2: Docker Stop & Remove container antigo
+    EC2->>EC2: Docker Run (Sobe a nova versão na Porta 80)
