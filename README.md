@@ -2,11 +2,11 @@
 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white) ![AWS EC2](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white) ![AWS ECR](https://img.shields.io/badge/AWS_ECR-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
-> Uma aplicação web conteinerizada, focada em demonstrar práticas modernas de DevOps. A aplicação realiza o cálculo de gastos de combustível para viagens (baseado no preço, distância e autonomia do veículo), mas o objetivo principal do projeto é demonstrar a **Infraestrutura (AWS)** e o **Pipeline de Integração/Entrega Contínuas (CI/CD)**.
+> Uma aplicação web conteinerizada, focada em demonstrar práticas modernas de DevOps. A aplicação realiza o cálculo de gastos de combustível para viagens, mas o objetivo principal do projeto é demonstrar a **Infraestrutura (AWS)** e o **Pipeline de Integração/Entrega Contínuas (CI/CD)**.
 
 ## 🏗️ Arquitetura e Fluxo de CI/CD
 
-O fluxo de implantação é totalmente automatizado. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do *build*, registro da imagem e *deploy* direto no servidor de produção.
+O fluxo de implantação é totalmente automatizado. Ao realizar um *push* na branch `main`, o GitHub Actions assume o controle do *build*, registro da imagem e *deploy* direto no servidor de produção através do arquivo `deploy.yml`[cite: 1].
 
 ```mermaid
 sequenceDiagram
@@ -28,13 +28,13 @@ sequenceDiagram
 ## 🚀 Tecnologias Utilizadas
 
 **Infraestrutura e DevOps:**
-- **Docker:** Conteinerização da aplicação.
+- **Docker:** Imagem baseada em **Alpine Linux** configurada no `Dockerfile` para garantir um container extremamente leve[cite: 1].
 - **AWS ECR (Elastic Container Registry):** Armazenamento privado das imagens.
 - **AWS EC2 (Elastic Compute Cloud):** Servidor de produção.
 - **GitHub Actions:** Automação da pipeline.
 
 **Aplicação Base:**
-- HTML, CSS e JS puro rodando sobre um servidor **Nginx** conteinerizado.
+- HTML5 (`index.html`), CSS3 (`style.css`) e JavaScript puro, arquitetado de forma modular usando `main.js`, `calculo.js` e `ui.js`[cite: 1].
 
 ## 🔐 Configuração do Pipeline (Secrets)
 
